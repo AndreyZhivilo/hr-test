@@ -9,3 +9,5 @@ export const REFRESH_TOKEN_COOKIE_NAME = z
   .parse(process.env.REFRESH_TOKEN_COOKIE_NAME)
 
 export { routes } from './routes'
+
+export { mainMenuItems } from './main-menu'
