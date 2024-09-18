@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/shared/ui/button"
 import {
 	Card,
@@ -9,29 +11,46 @@ import {
 } from "@/shared/ui/card"
 import { Input } from "@/shared/ui/input"
 import { Label } from "@/shared/ui/label"
+import { useForm, SubmitHandler } from "react-hook-form"
+import { loginFormSchema, onLoginSubmit, type LoginForm } from '../model'
+import { zodResolver } from "@hookform/resolvers/zod"
+
 
 export function LoginForm() {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<LoginForm>({ resolver: zodResolver(loginFormSchema) })
+
+	const onSubmit: SubmitHandler<LoginForm> = onLoginSubmit
+
+
 	return (
-		<Card className="w-full max-w-sm">
-			<CardHeader>
-				<CardTitle className="text-2xl">Login</CardTitle>
-				<CardDescription>
-					Enter your email below to login to your account.
-				</CardDescription>
-			</CardHeader>
-			<CardContent className="grid gap-4">
-				<div className="grid gap-2">
-					<Label htmlFor="email">Email</Label>
-					<Input id="email" type="email" placeholder="m@example.com" required />
-				</div>
-				<div className="grid gap-2">
-					<Label htmlFor="password">Password</Label>
-					<Input id="password" type="password" required />
-				</div>
-			</CardContent>
-			<CardFooter>
-				<Button className="w-full">Sign in</Button>
-			</CardFooter>
-		</Card>
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<Card className="w-full max-w-sm">
+				<CardHeader>
+					<CardTitle className="text-2xl">Войти в личный кабинет</CardTitle>
+					<CardDescription>
+						Введите свой email и пароль, чтобы войти в личный кабинет
+					</CardDescription>
+				</CardHeader>
+				<CardContent className="grid gap-4">
+					<div className="grid gap-2 relative">
+						<Label htmlFor="email">Email</Label>
+						<Input error={Boolean(errors.email)} id="email" type="email" placeholder="m@example.com" {...register("email")} />
+						{errors.email && <span className="absolute top-0 right-0 text-red-400 text-sm">{errors.email.message}</span>}
+					</div>
+					<div className="grid gap-2 relative">
+						<Label htmlFor="password">Пароль</Label>
+						<Input error={Boolean(errors.password)} id="password" type="password" {...register("password")} />
+						{errors.password && <span className="absolute top-0 right-0 text-red-400 text-sm">{errors.password.message}</span>}
+					</div>
+				</CardContent>
+				<CardFooter>
+					<Button className="w-full" type="submit">Войти</Button>
+				</CardFooter>
+			</Card>
+		</form>
 	)
 }
