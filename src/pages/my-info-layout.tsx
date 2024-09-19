@@ -5,7 +5,7 @@ export function MyInfoLayout({ children }: { children: ReactNode }) {
 
 	return (
 		<>
-			<AppHeader slug='dfas' />
+			<AppHeader />
 			<main>
 				{children}
 			</main>

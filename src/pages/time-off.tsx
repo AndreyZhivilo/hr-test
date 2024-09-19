@@ -1,7 +1,7 @@
 export function TimeOff() {
 	return (
 
-		<div> Time Off</div>
+		<div></div>
 	)
 }
 

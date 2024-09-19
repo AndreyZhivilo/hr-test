@@ -4,10 +4,34 @@ const config: Config = {
   darkMode: ['class'],
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        md: '2rem',
+        lg: '2rem',
+        xl: '2rem',
+        '2xl': '2rem',
+      },
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
+      },
+    },
     fontFamily: {
       inter: ['var(--font-inter)'],
     },
     extend: {
+      backgroundImage: {
+        search: "url('/search-icon.svg')",
+      },
+      backgroundPosition: {
+        'left-16': 'left 16px center',
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
