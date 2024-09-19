@@ -16,7 +16,7 @@ const CURRENT_PAGE = 'My Info'
 
 export function AppHeader() {
 	return (
-		<header className="py-[9px] bg-primary-foreground">
+		<header className="py-[9px] xl:py-0 bg-primary-foreground">
 			<div className="container 2xl:max-w-[1456px]">
 				<div className="flex items-center justify-between">
 					<div className="text-black text-xl mr-4 font-semibold">HarmonyHR</div>
