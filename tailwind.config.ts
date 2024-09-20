@@ -7,9 +7,9 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1rem',
-        sm: '2rem',
-        md: '2rem',
+        DEFAULT: '0',
+        sm: '0',
+        md: '0',
         lg: '2rem',
         xl: '2rem',
         '2xl': '2rem',

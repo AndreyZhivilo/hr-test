@@ -1,8 +1,7 @@
+import { DashboardContent } from "@/features/user-dashboard/ui/dashboard-content"
+
 export function TimeOff() {
 	return (
-
-		<div></div>
+		<DashboardContent />
 	)
 }
-
-TimeOff.theme = 'light'

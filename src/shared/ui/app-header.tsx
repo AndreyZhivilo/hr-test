@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { mainMenuItems } from '@/shared/config'
+import { mainMenuItems } from '@/shared/mock-data'
 import { cn } from '@/shared/lib'
 import { Input } from "./input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar"
@@ -17,7 +17,7 @@ const CURRENT_PAGE = 'My Info'
 export function AppHeader() {
 	return (
 		<header className="py-[9px] xl:py-0 bg-primary-foreground">
-			<div className="container 2xl:max-w-[1456px]">
+			<div className="container 2xl:max-w-[1456px] px-[24px] md:px-0">
 				<div className="flex items-center justify-between">
 					<div className="text-black text-xl mr-4 font-semibold">HarmonyHR</div>
 					<nav className="hidden xl:flex px-6 pt-8">

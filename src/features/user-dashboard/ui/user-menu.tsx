@@ -1,6 +1,6 @@
 'use client'
 
-import { userMenuItems } from '@/shared/config/user-menu';
+import { userMenuItems } from '@/shared/mock-data';
 import { cn } from '@/shared/lib';
 import Link from 'next/link';
 
@@ -27,7 +27,7 @@ export function UserMenu({ className }: { className?: string }) {
 							CURRENT_PAGE === item.label && 'bg-white'
 						)}
 					>
-						<Link href={item.url} className="text-black text-sm font-medium">{item.label}</Link>
+						<Link href={item.url} className="text-black text-sm font-medium w-max">{item.label}</Link>
 					</li>
 				))}
 				<li>
