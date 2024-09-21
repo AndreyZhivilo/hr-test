@@ -10,6 +10,7 @@ import {
 import * as SelectPrimitive from "@radix-ui/react-select"
 
 import { cn } from "@/shared/lib/utils"
+import { ReactNode } from "react"
 
 const Select = SelectPrimitive.Root
 
@@ -19,8 +20,8 @@ const SelectValue = SelectPrimitive.Value
 
 const SelectTrigger = React.forwardRef<
 	React.ElementRef<typeof SelectPrimitive.Trigger>,
-	React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & { triggerIcon?: React.ReactNode }
->(({ className, children, triggerIcon, ...props }, ref) => (
+	React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & { triggerIcon?: ReactNode, resetIcon?: ReactNode }
+>(({ className, children, triggerIcon, resetIcon, ...props }, ref) => (
 	<SelectPrimitive.Trigger
 		ref={ref}
 		className={cn(
@@ -31,8 +32,10 @@ const SelectTrigger = React.forwardRef<
 	>
 		{children}
 		<SelectPrimitive.Icon asChild>
-			{triggerIcon || <CaretSortIcon className="h-4 w-4 opacity-50" />}
-
+			<>
+				{resetIcon}
+				{triggerIcon || <CaretSortIcon className="h-4 w-4 opacity-50" />}
+			</>
 		</SelectPrimitive.Icon>
 	</SelectPrimitive.Trigger>
 ))

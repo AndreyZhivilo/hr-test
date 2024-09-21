@@ -1,6 +1,6 @@
 import { cn } from '@/shared/lib';
-import { SidebarSection } from './sidebar-section';
-import { SidebarItem } from './sidebar-item';
+import { SidebarSection } from './_sidebar-section';
+import { SidebarItem } from './_sidebar-item';
 import Link from 'next/link';
 import Image from 'next/image'
 import {

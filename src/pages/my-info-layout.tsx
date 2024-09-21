@@ -10,7 +10,7 @@ export function MyInfoLayout({ children }: { children: ReactNode }) {
 			<AppHeader />
 			<main className="bg-[#F0F3F8]">
 				<DashboardHeader />
-				<div className="container max-w-[1361px]">
+				<div className="container 2xl:max-w-[1361px]">
 					<div className="lg:grid lg:gap-x-[25px] lg:grid-cols-[225px_1fr]">
 						<UserSidebar className="relative z-40 bottom-4 hidden lg:block" />
 						{children}

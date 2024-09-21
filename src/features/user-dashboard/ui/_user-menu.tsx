@@ -11,7 +11,7 @@ import {
 	SelectTrigger,
 } from "@/shared/ui/select"
 
-import { SelectIcon } from './select-icon'
+import { SelectIcon } from '../../../shared/ui/select-icon'
 
 
 const CURRENT_PAGE = 'Time Off'

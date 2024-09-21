@@ -8,7 +8,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/shared/ui/select"
-import { SelectIcon } from './select-icon'
+import { SelectIcon } from '../../../shared/ui/select-icon'
 import Image from "next/image";
 import { Button } from '@/shared/ui/button';
 import {
