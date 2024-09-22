@@ -1,3 +1,8 @@
+export type UserMenuItem = {
+  label: string
+  url: string
+}
+
 export const userMenuItems = [
   { label: 'Personal', url: '#' },
   { label: 'Job', url: '#' },
@@ -8,4 +13,8 @@ export const userMenuItems = [
   { label: 'Benefits', url: '#' },
   { label: 'Training', url: '#' },
   { label: 'Assets', url: '#' },
+  { label: 'Balance', url: '#' },
+  { label: 'Sex', url: '#' },
+  { label: 'Drugs', url: '#' },
+  { label: 'Rock&Roll', url: '#' },
 ]

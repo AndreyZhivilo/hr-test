@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { DashboardControls } from "./_dashboard-controls";
 import { UserMenu } from "./_user-menu";
+import { userMenuItems } from '@/shared/mock-data';
 
 export function DashboardHeader() {
 	return (
@@ -16,7 +17,7 @@ export function DashboardHeader() {
 					/>
 					<h1 className="text-black text-[20px] md:text-[28px] font-semibold self-center ml-[24px] md:ml-0">Alexandra Kuibyshevskaya</h1>
 					<DashboardControls className="self-start md:self-center justify-self-end mr-[24px] md:mr-0" />
-					<UserMenu className="col-[1_/_span_3] md:col-[2_/_span_2] self-end" />
+					<UserMenu menuItems={userMenuItems} className="col-[1_/_span_3] md:col-[2_/_span_2] self-end" />
 				</div>
 			</div>
 		</div>

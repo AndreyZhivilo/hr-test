@@ -1,3 +1,5 @@
 export { cn } from './utils'
 export { useToast, toast } from './use-toast'
 export { formatDate } from './date-format'
+export { getLastVisibleItem } from './get-last-visible-menu-item'
+export { getPrecalculatedWidths } from './get-precalculated-widths'
