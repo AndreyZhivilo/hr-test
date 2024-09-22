@@ -105,7 +105,9 @@ export function UserMenu({ menuItems, className }: { menuItems: UserMenuItem[], 
 			<PopoverContent className='flex flex-col gap-4 items-start'>
 				{hiddenItems.map(item => {
 					return (
-						<Link key={item.label} href={item.url} className="text-black text-sm font-medium w-max mb-4">{item.label}</Link>
+						<Link key={item.label} href={item.url} className="w-full rounded-lg text-black text-sm font-medium p-4 hover:bg-primary transition-colors">
+							{item.label}
+						</Link>
 					)
 				})}
 			</PopoverContent>

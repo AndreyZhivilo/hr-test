@@ -1,17 +1,10 @@
 'use client'
 
 import React from "react";
-import { ThemeProvider } from "./theme-provider";
+import { SessionProvider } from "@/features/auth/model";
 
 export function Providers({ children }: { children: React.ReactNode }) {
 	return (
-		<ThemeProvider
-			attribute="class"
-			defaultTheme="light"
-			enableSystem
-			disableTransitionOnChange
-		>
-			{children}
-		</ThemeProvider>
+		<SessionProvider session={{ id: '1', name: 'Андрей', avatar: '/user-avatar.jpg' }}>{children}</SessionProvider>
 	)
 }
