@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Providers } from "./_providers/providers";
+import { AppLoader } from "./app-loader";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 
@@ -24,9 +24,9 @@ export default function RootLayout({
 			<body
 				className={`${inter.variable} antialiased h-screen bg-foreground text-background font-inter`}
 			>
-				<Providers>
+				<AppLoader>
 					{children}
-				</Providers>
+				</AppLoader>
 			</body>
 		</html>
 	);

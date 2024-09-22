@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/shared/api'
 import { gql } from '@apollo/client'
 import { cookies } from 'next/headers'
-import { REFRESH_TOKEN_COOKIE_NAME, routes } from '@/shared/config'
+import { REFRESH_TOKEN_COOKIE_NAME } from '@/shared/config/server-env-variables'
+import { routes } from '@/shared/config'
 
 const REFRESH = gql`
   mutation Refresh($token: String!) {

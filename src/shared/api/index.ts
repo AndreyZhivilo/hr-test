@@ -1,39 +1,30 @@
-import { ApolloClient, InMemoryCache, createHttpLink} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import {NEXT_PUBLIC_BACKEND_URL} from '../config'
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
+import { BACKEND_URL } from '../config/client-env-variables'
 
-export const createClientWithCredentials = (token: string | undefined) => {
-	
-	const httpLink = createHttpLink({
-		uri: NEXT_PUBLIC_BACKEND_URL,
-	});
+export const createClientWithCredentials = (token: string | null) => {
+  const httpLink = createHttpLink({
+    uri: BACKEND_URL,
+  })
 
-	const authLink = setContext((_, { headers }) => {
-		return {
-			headers: {
-				...headers,
-				authorization: token ? `Bearer ${token}` : "",
-			}
-		}
-	});
+  const authLink = setContext((_, { headers }) => {
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    }
+  })
 
-	return new ApolloClient({
-		link: authLink.concat(httpLink),
-		cache: new InMemoryCache(),
-	});
-
-	
+  return new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
+  })
 }
 
 export const createClient = () => {
-	return new ApolloClient({
-  uri: NEXT_PUBLIC_BACKEND_URL,
-  cache: new InMemoryCache(),
-});
+  return new ApolloClient({
+    uri: BACKEND_URL,
+    cache: new InMemoryCache(),
+  })
 }
-
-
-
-
-
-

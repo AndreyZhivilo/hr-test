@@ -119,7 +119,7 @@ export function UserMenu({ menuItems, className }: { menuItems: UserMenuItem[], 
 			<nav className={cn('overflow-x-auto no-scrollbar', className)}>
 				<ul className='flex items-center gap-4' ref={menuRef}>
 					{menuItems.map(item => (
-						<MenuItem label={item.label} url={item.url} isActive={item.label === CURRENT_PAGE} />
+						<MenuItem label={item.label} url={item.url} isActive={item.label === CURRENT_PAGE} key={item.label} />
 					))}
 				</ul>
 			</nav>
@@ -131,7 +131,7 @@ export function UserMenu({ menuItems, className }: { menuItems: UserMenuItem[], 
 			<nav className={cn('overflow-x-auto no-scrollbar', className)}>
 				<ul className='flex items-center gap-4' ref={menuRef}>
 					{menuItems.map(item => (
-						<MenuItem label={item.label} url={item.url} isActive={item.label === CURRENT_PAGE} />
+						<MenuItem label={item.label} url={item.url} isActive={item.label === CURRENT_PAGE} key={item.label} />
 					))}
 					<li id={MORE_BTN_ID}>
 						{moreBtn}
@@ -145,7 +145,7 @@ export function UserMenu({ menuItems, className }: { menuItems: UserMenuItem[], 
 		<nav className={cn('overflow-x-auto no-scrollbar', className)} >
 			<ul className='flex items-center gap-4' ref={menuRef}>
 				{visibleItems.map(item => (
-					<MenuItem label={item.label} url={item.url} isActive={item.label === CURRENT_PAGE} />
+					<MenuItem label={item.label} url={item.url} isActive={item.label === CURRENT_PAGE} key={item.label} />
 				))}
 				{isMoreBtnVisible && (
 					<li id={MORE_BTN_ID}>

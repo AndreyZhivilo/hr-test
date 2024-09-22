@@ -3,7 +3,7 @@
 import { createContext, ReactNode, useContext } from 'react'
 import { create, StoreApi, UseBoundStore } from 'zustand'
 
-type Session = {
+export type Session = {
 	id: string
 	name: string
 	avatar: string
@@ -15,7 +15,7 @@ type SessionStore = {
 	removeSession: () => void
 }
 
-const createSessionStore = (session: Session) => {
+const createSessionStore = (session: Session | undefined) => {
 	return create<SessionStore>((set) => ({
 		isLoading: false,
 		currentSession: session,
@@ -30,7 +30,7 @@ const createSessionStore = (session: Session) => {
 
 const sessionContext = createContext<UseBoundStore<StoreApi<SessionStore>>>({} as UseBoundStore<StoreApi<SessionStore>>)
 
-export const SessionProvider = ({ session, children }: { session: Session, children: ReactNode }) => {
+export const SessionProvider = ({ session, children }: { session: Session | undefined, children: ReactNode }) => {
 	const store = createSessionStore(session)
 	return <sessionContext.Provider value={store}>{children}</sessionContext.Provider>
 }
