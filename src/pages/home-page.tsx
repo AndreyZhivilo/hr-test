@@ -6,4 +6,5 @@ export function HomePage() {
 			<LoginForm />
 		</div>
 	)
+
 }

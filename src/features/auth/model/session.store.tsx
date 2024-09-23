@@ -10,14 +10,13 @@ export type Session = {
 }
 
 type SessionStore = {
-	currentSession?: Session
+	currentSession?: Session | undefined
 	setCurrentSession: (session: Session) => void
 	removeSession: () => void
 }
 
 const createSessionStore = (session: Session | undefined) => {
 	return create<SessionStore>((set) => ({
-		isLoading: false,
 		currentSession: session,
 		setCurrentSession: (session) => {
 			set({ currentSession: session })
@@ -25,6 +24,7 @@ const createSessionStore = (session: Session | undefined) => {
 		removeSession: () => {
 			set({ currentSession: undefined })
 		},
+
 	}))
 }
 

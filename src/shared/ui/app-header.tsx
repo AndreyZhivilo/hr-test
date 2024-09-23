@@ -2,7 +2,6 @@ import Link from "next/link";
 import { mainMenuItems } from '@/shared/mock-data'
 import { cn } from '@/shared/lib'
 import { Input } from "./input";
-import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar"
 import Image from "next/image";
 import { Button } from "./button";
 import {
@@ -10,11 +9,12 @@ import {
 	SheetContent,
 	SheetTrigger,
 } from "@/shared/ui/sheet"
+import { ReactNode } from "react";
 
 
 const CURRENT_PAGE = 'My Info'
 
-export function AppHeader() {
+export function AppHeader({ profile }: { profile: ReactNode }) {
 	return (
 		<header className="py-[9px] xl:py-0 bg-primary-foreground">
 			<div className="container 2xl:max-w-[1456px] px-[24px] md:px-0">
@@ -63,10 +63,7 @@ export function AppHeader() {
 								</div>
 							</SheetContent>
 						</Sheet>
-						<Avatar className="w-[38px] h-[38px] cursor-pointer">
-							<AvatarImage src="https://github.com/shadcn.png" />
-							<AvatarFallback>CN</AvatarFallback>
-						</Avatar>
+						{profile}
 					</div>
 
 				</div>

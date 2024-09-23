@@ -12,8 +12,12 @@ import {
 import { Input } from "@/shared/ui/input"
 import { Label } from "@/shared/ui/label"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { loginFormSchema, onLoginSubmit, type LoginForm } from '../model'
+import { loginFormSchema, useSignIn, type LoginForm } from '../model'
 import { zodResolver } from "@hookform/resolvers/zod"
+import { LoaderCircle } from '@/shared/ui/loader-circle'
+import { useToast } from "@/shared/lib"
+import { useEffect } from "react"
+
 
 
 export function LoginForm() {
@@ -23,11 +27,25 @@ export function LoginForm() {
 		formState: { errors },
 	} = useForm<LoginForm>({ resolver: zodResolver(loginFormSchema) })
 
-	const onSubmit: SubmitHandler<LoginForm> = onLoginSubmit
+	const { error, isLoading, singIn } = useSignIn()
+	const { toast } = useToast()
+
+	const onSubmit: SubmitHandler<LoginForm> = singIn
+
+	useEffect(() => {
+		if (error) {
+			toast({
+				title: "Ошибка",
+				description: `${error}`,
+				duration: 4000,
+			})
+		}
+	}, [error])
+
 
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form onSubmit={handleSubmit(onSubmit)} noValidate>
 			<Card className="w-full max-w-sm">
 				<CardHeader>
 					<CardTitle className="text-2xl">Войти в личный кабинет</CardTitle>
@@ -48,7 +66,15 @@ export function LoginForm() {
 					</div>
 				</CardContent>
 				<CardFooter>
-					<Button className="w-full" type="submit">Войти</Button>
+					<Button
+						disabled={isLoading || !!errors.email || !!errors.password}
+						variant='outline'
+						className="w-full bg-primary hover:bg-primary-foreground"
+						type="submit"
+					>
+						{isLoading && <LoaderCircle size={20} className="mr-2" />}
+						Войти
+					</Button>
 				</CardFooter>
 			</Card>
 		</form>

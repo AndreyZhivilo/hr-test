@@ -1,13 +1,17 @@
+'use client'
+
 import { ReactNode } from "react";
 import { AppHeader } from "@/shared/ui/app-header";
 import { DashboardHeader } from "@/features/user-dashboard/ui/dashboard-header";
 import { UserSidebar } from "@/features/user-dashboard/ui/user-sidebar";
+import { useSession } from "@/features/auth/model";
+import { HeaderProfile } from '@/features/auth/ui/header-profile'
 
 export function MyInfoLayout({ children }: { children: ReactNode }) {
-
+	const { currentSession } = useSession()
 	return (
 		<>
-			<AppHeader />
+			<AppHeader profile={<HeaderProfile img={currentSession?.avatar} />} />
 			<main className="bg-[#F0F3F8]">
 				<DashboardHeader />
 				<div className="container 2xl:max-w-[1361px]">
