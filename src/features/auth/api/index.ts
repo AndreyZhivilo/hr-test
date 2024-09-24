@@ -1,8 +1,9 @@
+/* eslint-disable no-throw-literal */
 import { ApolloQueryResult } from '@apollo/client'
 import {
   createClientWithCredentials,
   createClient,
-  LoginResponse,
+  errorHandler,
 } from '@/shared/api'
 import { ACCESS_TOKEN_LOCAL_STORAGE_NAME } from '@/shared/config/client-env-variables'
 import { GET_MY_PROFILE, LOGIN, REFRESH } from './queries'
@@ -28,9 +29,10 @@ class AuthApi {
     } catch (e) {
       if (attempts < 2) {
         await this.refreshClient()
-        return await this.fetchUser(attempts + 1)
+        return this.fetchUser(attempts + 1)
       }
-      throw e
+      const error = errorHandler(e)
+      throw error
     }
   }
 
@@ -39,8 +41,8 @@ class AuthApi {
       method: 'POST',
       body: JSON.stringify(credentials),
     })
-    const data: LoginResponse = await res.json()
-    if (data.message) throw new Error(data.message)
+    const data = await res.json()
+    if (!res.ok) throw data
 
     if (data.access_token) {
       localStorage.setItem(ACCESS_TOKEN_LOCAL_STORAGE_NAME, data.access_token)
@@ -73,12 +75,10 @@ class AuthApi {
 
   refreshClient = async () => {
     const res = await fetch(routes.API_REFRESH)
-    const data: LoginResponse = await res.json()
+    const data = await res.json()
+    if (!res.ok) throw data
     if (data.access_token) {
       localStorage.setItem(ACCESS_TOKEN_LOCAL_STORAGE_NAME, data.access_token)
-    }
-    if (data.message) {
-      throw new Error(data.message)
     }
   }
 }

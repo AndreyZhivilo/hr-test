@@ -1,7 +1,6 @@
-import { ApolloClient, InMemoryCache, createHttpLink , ApolloError } from '@apollo/client'
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { BACKEND_URL } from '../config/client-env-variables'
-
 
 export const createClientWithCredentials = (token: string | null) => {
   const httpLink = createHttpLink({
@@ -9,11 +8,11 @@ export const createClientWithCredentials = (token: string | null) => {
   })
 
   const authLink = setContext((_, { headers }) => ({
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : '',
-      },
-    }))
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  }))
 
   return new ApolloClient({
     link: authLink.concat(httpLink),
@@ -21,30 +20,45 @@ export const createClientWithCredentials = (token: string | null) => {
   })
 }
 
-export const createClient = () => new ApolloClient({
+export const createClient = () =>
+  new ApolloClient({
     uri: BACKEND_URL,
     cache: new InMemoryCache(),
   })
 
-function isApolloError(error: any): error is ApolloError {
-  return Boolean(error?.graphQLErrors && Array.isArray(error.graphQLErrors))
-}
-
 export function isUnauthorizedGraphQLError(error: any): boolean {
-  if (!isApolloError(error)) return false
-  return error.graphQLErrors.some(
-    (e) => e?.extensions?.code === 'UNAUTHENTICATED'
-  )
+  if (error?.graphQLErrors && Array.isArray(error.graphQLErrors)) {
+    return error.graphQLErrors.some(
+      (e: any) => e?.extensions?.code === 'UNAUTHENTICATED'
+    )
+  }
+  return false
 }
 
-type LoginOkResponse = {
-  access_token: string
-  message?: never
+export const errorHandler = (e: any) => {
+  if (e.networkError) {
+    return {
+      message: e.message,
+      networkError: true,
+      status: e.networkError.statusCode || 500,
+    }
+  }
+  if (e.graphQLErrors) {
+    return {
+      message: e.message,
+      graphQLErrors: e.graphQLErrors,
+      status: 400,
+    }
+  }
+  return { message: 'Внутренняя ошибка сервера', status: 400 }
 }
 
-type LoginErrorResponse = {
-  message: 'Unauthorized' | string
-  access_token?: never
+export const getErrorMessage = (e: ReturnType<typeof errorHandler>) => {
+  if (e.graphQLErrors && isUnauthorizedGraphQLError(e)) {
+    return 'Ошибка авторизации'
+  }
+  if (e.graphQLErrors) {
+    return JSON.stringify(e.graphQLErrors)
+  }
+  return 'Произошла непридвиденная ошибка'
 }
-
-export type LoginResponse = LoginOkResponse | LoginErrorResponse

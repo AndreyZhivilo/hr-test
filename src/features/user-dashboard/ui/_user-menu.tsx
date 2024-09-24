@@ -98,7 +98,7 @@ export function UserMenu({ menuItems, className }: { menuItems: UserMenuItem[], 
 		<Popover>
 			<PopoverTrigger asChild>
 				<Button className='shadow-none text-black'>
-					Еще
+					More
 					<SelectIcon className="ml-2" />
 				</Button>
 			</PopoverTrigger>

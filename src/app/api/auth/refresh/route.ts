@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { authApi } from '@/features/auth/api'
 import { REFRESH_TOKEN_COOKIE_NAME } from '@/shared/config/server-env-variables'
 import { routes } from '@/shared/config'
-import { isUnauthorizedGraphQLError } from '@/shared/api'
+import { errorHandler } from '@/shared/api'
 
 export async function GET() {
   try {
@@ -22,14 +22,7 @@ export async function GET() {
 
     return NextResponse.json({ access_token })
   } catch (e: any) {
-    if (isUnauthorizedGraphQLError(e)) {
-      return NextResponse.json(
-        { message: 'Вы не авторизованы' },
-        { status: 401 }
-      )
-    }
-    return NextResponse.json({
-      message: `Произошла непридвиденная ошибка в процессе аутентификации`,
-    })
+    const error = errorHandler(e)
+    return NextResponse.json(error, { status: error.status })
   }
 }

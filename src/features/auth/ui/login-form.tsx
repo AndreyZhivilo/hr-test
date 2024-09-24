@@ -45,7 +45,7 @@ export function LoginForm() {
 
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} noValidate>
+		<form onSubmit={handleSubmit(onSubmit)} noValidate className="mx-5">
 			<Card className="w-full max-w-sm">
 				<CardHeader>
 					<CardTitle className="text-2xl">Войти в личный кабинет</CardTitle>

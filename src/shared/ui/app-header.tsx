@@ -19,14 +19,14 @@ export function AppHeader({ profile }: { profile: ReactNode }) {
 		<header className="py-[9px] xl:py-0 bg-primary-foreground">
 			<div className="container 2xl:max-w-[1456px] px-[24px] md:px-0">
 				<div className="flex items-center justify-between">
-					<div className="text-black text-xl mr-4 font-semibold">HarmonyHR</div>
+					<Link href='/' className="text-black text-xl mr-4 font-semibold">HarmonyHR</Link>
 					<nav className="hidden xl:flex px-6 pt-8">
 						<ul className="flex items-center">
 							{mainMenuItems.map(item => (
-									<li key={item.lable} className={cn("flex justify-center items-center p-4 rounded-tl-lg rounded-tr-lg hover:bg-primary transition-colors", item.lable === CURRENT_PAGE && 'bg-primary')}>
-										<Link href={item.url} className="text-black text-lg font-normal">{item.lable}</Link>
-									</li>
-								))}
+								<li key={item.lable} className={cn("flex justify-center items-center p-4 rounded-tl-lg rounded-tr-lg hover:bg-primary transition-colors", item.lable === CURRENT_PAGE && 'bg-primary')}>
+									<Link href={item.url} className="text-black text-lg font-normal">{item.lable}</Link>
+								</li>
+							))}
 						</ul>
 					</nav>
 					<Input

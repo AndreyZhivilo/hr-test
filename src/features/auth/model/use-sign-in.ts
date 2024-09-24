@@ -6,6 +6,7 @@ import { useSession } from './session.store'
 import { authApi } from '../api'
 import type { LoginForm } from './login-form-schema'
 import { routes } from '@/shared/config'
+import { getErrorMessage } from '@/shared/api'
 
 export function useSignIn() {
   const [isLoading, setIsLoading] = useState(false)
@@ -29,7 +30,7 @@ export function useSignIn() {
       })
       router.push(routes.USER_DASHBOARD)
     } catch (e: any) {
-      setError(e.message)
+      setError(getErrorMessage(e))
     } finally {
       setIsLoading(false)
     }

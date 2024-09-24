@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-import { isUnauthorizedGraphQLError } from '@/shared/api'
+import { errorHandler } from '@/shared/api'
 import { REFRESH_TOKEN_COOKIE_NAME } from '@/shared/config/server-env-variables'
 import { routes } from '@/shared/config'
 import type { LoginForm } from '@/features/auth/model'
@@ -22,14 +22,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ access_token })
   } catch (e: any) {
-    if (isUnauthorizedGraphQLError(e)) {
-      return NextResponse.json(
-        { message: 'Неправильный логин или пароль' },
-        { status: 401 }
-      )
-    }
-    return NextResponse.json({
-      message: `Произошла непридвиденная ошибка в процессе аутентификации`,
-    })
+    const error = errorHandler(e)
+    return NextResponse.json(error, { status: error.status })
   }
 }
