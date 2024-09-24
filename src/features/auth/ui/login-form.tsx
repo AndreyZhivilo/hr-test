@@ -1,5 +1,8 @@
 'use client'
 
+import { useForm, SubmitHandler } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
 import { Button } from "@/shared/ui/button"
 import {
 	Card,
@@ -11,12 +14,9 @@ import {
 } from "@/shared/ui/card"
 import { Input } from "@/shared/ui/input"
 import { Label } from "@/shared/ui/label"
-import { useForm, SubmitHandler } from "react-hook-form"
 import { loginFormSchema, useSignIn, type LoginForm } from '../model'
-import { zodResolver } from "@hookform/resolvers/zod"
 import { LoaderCircle } from '@/shared/ui/loader-circle'
 import { useToast } from "@/shared/lib"
-import { useEffect } from "react"
 
 
 
@@ -40,7 +40,7 @@ export function LoginForm() {
 				duration: 4000,
 			})
 		}
-	}, [error])
+	}, [error, toast])
 
 
 

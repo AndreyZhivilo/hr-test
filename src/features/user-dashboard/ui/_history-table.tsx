@@ -1,15 +1,8 @@
+/* eslint-disable react/no-unstable-nested-components */
+
 'use client'
 
-import { cn } from '@/shared/lib';
 import Image from 'next/image'
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "@/shared/ui/table"
 import {
 	type SortingState,
 	ColumnDef,
@@ -18,11 +11,20 @@ import {
 	useReactTable,
 	getSortedRowModel
 } from "@tanstack/react-table"
+import { useState } from 'react';
+import { cn, formatDate } from '@/shared/lib';
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/shared/ui/table"
 
 import { type TableRowType, tableData } from '@/shared/mock-data'
-import { formatDate } from '@/shared/lib'
+
 import { Button } from '@/shared/ui/button';
-import { useState } from 'react';
 
 export function HistoryTable({ className }: { className?: string }) {
 	const [sorting, setSorting] = useState<SortingState>([])
@@ -30,22 +32,20 @@ export function HistoryTable({ className }: { className?: string }) {
 	const columns: ColumnDef<TableRowType>[] = [
 		{
 			accessorKey: "date",
-			header: ({ column }) => {
-				return (
-					<Button
-						variant="ghost"
-						onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-						className='hover:bg-transparent'
-					>
-						Date
-						<Image src='/sort-arrow-icon.svg' width={16} height={16} aria-hidden="true" alt='sort' />
-					</Button>
-				)
-			},
+			header: ({ column }) => (
+				<Button
+					variant="ghost"
+					onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+					className='hover:bg-transparent'
+				>
+					Date
+					<Image src='/sort-arrow-icon.svg' width={16} height={16} aria-hidden="true" alt='sort' />
+				</Button>
+			),
 			cell: ({ row }) => {
 				const date = String(row.getValue("date"))
 				const formatted = formatDate(date)
-				return <>{formatted}</>
+				return <span>{formatted}</span>
 			}
 		},
 		{
@@ -57,7 +57,7 @@ export function HistoryTable({ className }: { className?: string }) {
 			header: "Used Days (-)",
 			cell: ({ row }) => {
 				const days = Number(row.getValue("usedDays"))
-				return days === 0 ? <></> : <>{days}</>
+				return days === 0 ? '' : <span>{days}</span>
 			}
 		},
 		{
@@ -65,7 +65,7 @@ export function HistoryTable({ className }: { className?: string }) {
 			header: "Earned Days (+)",
 			cell: ({ row }) => {
 				const days = Number(row.getValue("earnedDays"))
-				return days ? <>{days.toFixed(1)}</> : <></>
+				return days ? <>{days.toFixed(1)}</> : ''
 			}
 		},
 		{
@@ -73,7 +73,7 @@ export function HistoryTable({ className }: { className?: string }) {
 			header: "Balance",
 			cell: ({ row }) => {
 				const days = Number(row.getValue("balance")).toFixed(1)
-				return <>{days}</>
+				return <span>{days}</span>
 			}
 		}
 	]
@@ -94,18 +94,16 @@ export function HistoryTable({ className }: { className?: string }) {
 				<TableHeader className='bg-primary'>
 					{table.getHeaderGroups().map((headerGroup) => (
 						<TableRow key={headerGroup.id}>
-							{headerGroup.headers.map((header) => {
-								return (
-									<TableHead key={header.id} className='text-black text-nowrap'>
-										{header.isPlaceholder
-											? null
-											: flexRender(
-												header.column.columnDef.header,
-												header.getContext()
-											)}
-									</TableHead>
-								)
-							})}
+							{headerGroup.headers.map((header) => (
+								<TableHead key={header.id} className='text-black text-nowrap'>
+									{header.isPlaceholder
+										? null
+										: flexRender(
+											header.column.columnDef.header,
+											header.getContext()
+										)}
+								</TableHead>
+							))}
 						</TableRow>
 					))}
 				</TableHeader>

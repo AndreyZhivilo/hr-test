@@ -1,5 +1,5 @@
-import { cn } from '@/shared/lib';
 import Image from 'next/image'
+import { cn } from '@/shared/lib';
 import { HistoryTable } from './_history-table';
 import { HistoryTableControls } from './_history-table-controls';
 

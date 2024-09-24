@@ -1,3 +1,22 @@
 {
-  "extends": ["airbnb", "airbnb/hooks", "next/core-web-vitals", "next/typescript", "prettier"]
+  "extends": ["airbnb", "next/core-web-vitals", "next/typescript", "prettier"],
+  "rules": {
+    "import/extensions": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "camelcase": "off",
+    "class-methods-use-this": "off",
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "no-return-await": "off",
+    "no-shadow": "off",
+    "react/require-default-props": "warn"
+  }
 }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { isUnauthorizedGraphQLError } from '@/shared/api'
 import { cookies } from 'next/headers'
+import { isUnauthorizedGraphQLError } from '@/shared/api'
 import { REFRESH_TOKEN_COOKIE_NAME } from '@/shared/config/server-env-variables'
 import { routes } from '@/shared/config'
 import type { LoginForm } from '@/features/auth/model'
@@ -28,7 +28,6 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       )
     }
-    console.warn(e)
     return NextResponse.json({
       message: `Произошла непридвиденная ошибка в процессе аутентификации`,
     })

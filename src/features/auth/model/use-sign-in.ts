@@ -1,8 +1,10 @@
+'use client'
+
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useSession } from './session.store'
 import { authApi } from '../api'
 import type { LoginForm } from './login-form-schema'
-import { useRouter } from 'next/navigation'
 import { routes } from '@/shared/config'
 
 export function useSignIn() {

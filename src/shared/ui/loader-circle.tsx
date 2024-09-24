@@ -1,4 +1,4 @@
-export const LoaderCircle = ({ size = 40, color = '#007bff', className }: { size?: number, color?: string, className?: string }) => {
+export function LoaderCircle({ size = 40, color = '#007bff', className }: { size?: number, color?: string, className?: string }) {
 	return (
 		<svg
 			width={size}
@@ -28,4 +28,4 @@ export const LoaderCircle = ({ size = 40, color = '#007bff', className }: { size
 			</circle>
 		</svg>
 	);
-};
+}

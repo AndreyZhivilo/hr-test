@@ -1,5 +1,5 @@
-import { cn } from '@/shared/lib';
 import Image from 'next/image'
+import { cn } from '@/shared/lib';
 
 export function SectionUpcomingTimeOff({ className }: { className?: string }) {
 	return (
@@ -15,7 +15,7 @@ export function SectionUpcomingTimeOff({ className }: { className?: string }) {
 				<div className="flex flex-col gap-y-[4px]">
 					<span>Jan 27</span>
 					<div className="flex items-center">
-						<div className="w-2 h-2 bg-[#1c3144] rounded-full mr-[4px]"></div>
+						<div className="w-2 h-2 bg-[#1c3144] rounded-full mr-[4px]" />
 						<span>1 dey of Sick</span>
 					</div>
 				</div>

@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useLayoutEffect, useEffect, useRef, useCallback } from 'react';
-import { type UserMenuItem } from '@/shared/mock-data';
-import { cn } from '@/shared/lib';
+import { useState, useLayoutEffect, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { type UserMenuItem } from '@/shared/mock-data';
+import { cn, getLastVisibleItem, getPrecalculatedWidths } from '@/shared/lib';
 
 import {
 	Popover,
@@ -13,7 +13,7 @@ import {
 
 import { SelectIcon } from '@/shared/ui/select-icon'
 import { Button } from '@/shared/ui/button';
-import { getLastVisibleItem, getPrecalculatedWidths } from '@/shared/lib'
+
 import { UserMenuItem as MenuItem } from './_user-menu-item';
 
 
@@ -102,14 +102,12 @@ export function UserMenu({ menuItems, className }: { menuItems: UserMenuItem[], 
 					<SelectIcon className="ml-2" />
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className='flex flex-col gap-4 items-start'>
-				{hiddenItems.map(item => {
-					return (
-						<Link key={item.label} href={item.url} className="w-full rounded-lg text-black text-sm font-medium p-4 hover:bg-primary transition-colors">
-							{item.label}
-						</Link>
-					)
-				})}
+			<PopoverContent className='flex flex-col gap-1 items-start'>
+				{hiddenItems.map(item => (
+					<Link key={item.label} href={item.url} className="w-full rounded-lg text-black text-sm font-medium p-2 hover:bg-primary transition-colors">
+						{item.label}
+					</Link>
+				))}
 			</PopoverContent>
 		</Popover>
 	)

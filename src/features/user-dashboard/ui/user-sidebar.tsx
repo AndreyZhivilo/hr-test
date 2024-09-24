@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import Link from 'next/link';
+import Image from 'next/image'
 import { cn } from '@/shared/lib';
 import { SidebarSection } from './_sidebar-section';
 import { SidebarItem } from './_sidebar-item';
-import Link from 'next/link';
-import Image from 'next/image'
 import {
 	CollapsibleText,
 } from "@/shared/ui/collapsible-text"

@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
-import { REFRESH_TOKEN_COOKIE_NAME } from '@/shared/config/server-env-variables'
 import { NextResponse } from 'next/server'
+import { REFRESH_TOKEN_COOKIE_NAME } from '@/shared/config/server-env-variables'
 import { routes } from '@/shared/config'
 
 export async function GET() {

@@ -1,3 +1,3 @@
-import { TimeOff } from "@/pages/time-off";
+import TimeOff from "@/_pages/time-off";
 
 export default TimeOff

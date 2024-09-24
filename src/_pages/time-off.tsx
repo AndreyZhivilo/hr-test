@@ -1,6 +1,6 @@
 import { DashboardContent } from "@/features/user-dashboard/ui/dashboard-content"
 
-export function TimeOff() {
+export default function TimeOff() {
 	return (
 		<DashboardContent />
 	)

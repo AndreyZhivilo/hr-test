@@ -1,8 +1,11 @@
 'use client'
 
 import { ReactNode } from "react";
-import { useSession } from '@/features/auth/model'
 import { useRouter } from "next/navigation";
+import { useSession } from '@/features/auth/model'
+
+
+
 
 export default function PrivateLayout({ children }: { children: ReactNode }) {
 	const { currentSession } = useSession()

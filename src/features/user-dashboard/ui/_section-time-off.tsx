@@ -1,6 +1,6 @@
+import Image from 'next/image'
 import { cn } from '@/shared/lib';
 import { Button } from '@/shared/ui/button';
-import Image from 'next/image'
 import { InfoCard } from './_info-card';
 
 export function SectionTimeOff({ className }: { className?: string }) {

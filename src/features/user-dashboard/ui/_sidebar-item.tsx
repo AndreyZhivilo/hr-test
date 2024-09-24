@@ -1,6 +1,6 @@
-import { cn } from '@/shared/lib';
 import Image from 'next/image'
 import Link from 'next/link';
+import { cn } from '@/shared/lib';
 
 export function SidebarItem({ label, icon, url, className }: { label: string, icon?: string, url?: string, className?: string }) {
 	return (

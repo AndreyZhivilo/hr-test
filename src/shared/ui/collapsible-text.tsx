@@ -37,13 +37,11 @@ export function CollapsibleText({
 				{children}
 
 			</CollapsibleContent>
-			{
-				<CollapsibleTrigger
+			<CollapsibleTrigger
 					onClick={() => setIsOpen(!isOpen)}
 				>
 					{isOpen ? triggerTextOpened : triggerTextClosed}
 				</CollapsibleTrigger>
-			}
 		</Collapsible>
 	)
 }

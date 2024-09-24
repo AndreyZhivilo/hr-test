@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image";
 import { cn } from '@/shared/lib'
 import {
 	Select,
@@ -9,7 +10,6 @@ import {
 	SelectValue,
 } from "@/shared/ui/select"
 import { SelectIcon } from '../../../shared/ui/select-icon'
-import Image from "next/image";
 import { Button } from '@/shared/ui/button';
 import {
 	Popover,

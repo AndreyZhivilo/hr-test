@@ -1,11 +1,18 @@
-import { createClientWithCredentials, createClient } from '@/shared/api'
+import { ApolloQueryResult } from '@apollo/client'
+import {
+  createClientWithCredentials,
+  createClient,
+  LoginResponse,
+} from '@/shared/api'
 import { ACCESS_TOKEN_LOCAL_STORAGE_NAME } from '@/shared/config/client-env-variables'
 import { GET_MY_PROFILE, LOGIN, REFRESH } from './queries'
-import { LoginForm } from '../model'
-import { LoginResponse } from '@/shared/api'
 import { routes } from '@/shared/config'
 import { GetMyProfileQuery } from '@/shared/api/__generated__/graphql'
-import { ApolloQueryResult } from '@apollo/client'
+
+type Credentials = {
+  email: string
+  password: string
+}
 
 class AuthApi {
   fetchUser = async (
@@ -27,7 +34,7 @@ class AuthApi {
     }
   }
 
-  submitCredentials = async (credentials: LoginForm) => {
+  submitCredentials = async (credentials: Credentials) => {
     const res = await fetch(routes.API_LOGIN, {
       method: 'POST',
       body: JSON.stringify(credentials),
@@ -40,7 +47,7 @@ class AuthApi {
     }
   }
 
-  login = async (credentials: LoginForm) => {
+  login = async (credentials: Credentials) => {
     const client = createClient()
     const { data } = await client.mutate({
       mutation: LOGIN,

@@ -1,15 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
+import { ReactNode } from "react";
 import { mainMenuItems } from '@/shared/mock-data'
 import { cn } from '@/shared/lib'
 import { Input } from "./input";
-import Image from "next/image";
 import { Button } from "./button";
 import {
 	Sheet,
 	SheetContent,
 	SheetTrigger,
 } from "@/shared/ui/sheet"
-import { ReactNode } from "react";
 
 
 const CURRENT_PAGE = 'My Info'
@@ -22,13 +22,11 @@ export function AppHeader({ profile }: { profile: ReactNode }) {
 					<div className="text-black text-xl mr-4 font-semibold">HarmonyHR</div>
 					<nav className="hidden xl:flex px-6 pt-8">
 						<ul className="flex items-center">
-							{mainMenuItems.map(item => {
-								return (
+							{mainMenuItems.map(item => (
 									<li key={item.lable} className={cn("flex justify-center items-center p-4 rounded-tl-lg rounded-tr-lg hover:bg-primary transition-colors", item.lable === CURRENT_PAGE && 'bg-primary')}>
 										<Link href={item.url} className="text-black text-lg font-normal">{item.lable}</Link>
 									</li>
-								)
-							})}
+								))}
 						</ul>
 					</nav>
 					<Input

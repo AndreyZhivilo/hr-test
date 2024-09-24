@@ -1,5 +1,5 @@
-import { cn } from '@/shared/lib';
 import Link from 'next/link';
+import { cn } from '@/shared/lib';
 
 export function UserMenuItem({
 	label,

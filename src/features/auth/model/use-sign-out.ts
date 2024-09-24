@@ -1,5 +1,7 @@
-import { routes } from '@/shared/config'
+'use client'
+
 import { useState } from 'react'
+import { routes } from '@/shared/config'
 import { useSession } from './session.store'
 import { ACCESS_TOKEN_LOCAL_STORAGE_NAME } from '@/shared/config/client-env-variables'
 

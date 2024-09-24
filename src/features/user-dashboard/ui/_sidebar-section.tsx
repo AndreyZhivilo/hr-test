@@ -1,5 +1,5 @@
-import { cn } from '@/shared/lib';
 import { ReactNode } from 'react';
+import { cn } from '@/shared/lib';
 
 export function SidebarSection({ className, children }: { className?: string, children: ReactNode }) {
 	return (

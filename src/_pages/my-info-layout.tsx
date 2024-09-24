@@ -4,10 +4,10 @@ import { ReactNode } from "react";
 import { AppHeader } from "@/shared/ui/app-header";
 import { DashboardHeader } from "@/features/user-dashboard/ui/dashboard-header";
 import { UserSidebar } from "@/features/user-dashboard/ui/user-sidebar";
-import { useSession } from "@/features/auth/model";
+import { useSession } from "@/features/auth/model/session.store";
 import { HeaderProfile } from '@/features/auth/ui/header-profile'
 
-export function MyInfoLayout({ children }: { children: ReactNode }) {
+export default function MyInfoLayout({ children }: { children: ReactNode }) {
 	const { currentSession } = useSession()
 	return (
 		<>

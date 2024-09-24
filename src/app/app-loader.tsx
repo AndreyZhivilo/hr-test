@@ -1,8 +1,7 @@
 'use client'
 
-import React, { useState } from "react";
-import { SessionProvider } from "@/features/auth/model";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { SessionProvider } from "@/features/auth/model/session.store";
 import { authApi } from '@/features/auth/api'
 import type { Session } from '@/features/auth/model'
 import { LoaderCircle } from '@/shared/ui/loader-circle'

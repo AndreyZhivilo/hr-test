@@ -15,22 +15,20 @@ type SessionStore = {
 	removeSession: () => void
 }
 
-const createSessionStore = (session: Session | undefined) => {
-	return create<SessionStore>((set) => ({
-		currentSession: session,
-		setCurrentSession: (session) => {
-			set({ currentSession: session })
-		},
-		removeSession: () => {
-			set({ currentSession: undefined })
-		},
+const createSessionStore = (session: Session | undefined) => create<SessionStore>((set) => ({
+	currentSession: session,
+	setCurrentSession: (session) => {
+		set({ currentSession: session })
+	},
+	removeSession: () => {
+		set({ currentSession: undefined })
+	},
 
-	}))
-}
+}))
 
 const sessionContext = createContext<UseBoundStore<StoreApi<SessionStore>>>({} as UseBoundStore<StoreApi<SessionStore>>)
 
-export const SessionProvider = ({ session, children }: { session: Session | undefined, children: ReactNode }) => {
+export function SessionProvider({ session, children }: { session: Session | undefined, children: ReactNode }) {
 	const store = createSessionStore(session)
 	return <sessionContext.Provider value={store}>{children}</sessionContext.Provider>
 }

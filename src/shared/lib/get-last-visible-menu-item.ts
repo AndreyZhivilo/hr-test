@@ -13,9 +13,7 @@ export const getLastVisibleItem = ({
     return itemsWidths.length - 1
   }
 
-  const visibleItems = itemsWidths.filter((width) => {
-    return width + moreBtnWidth < containerWidth
-  })
+  const visibleItems = itemsWidths.filter((width) => width + moreBtnWidth < containerWidth)
 
   return visibleItems.length ? visibleItems.length - 1 : 0
 }
