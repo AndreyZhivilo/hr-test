@@ -1,3 +1,7 @@
+## Демо
+
+[http://hrtest-hr-test-next-js-3aed6f-c76d23-45-155-204-21.traefik.me/](http://hrtest-hr-test-next-js-3aed6f-c76d23-45-155-204-21.traefik.me/)
+
 ## 🚀 Инструкция по запуску
 
 1. Переименовываем файл `.env.example` в `.env.local`
