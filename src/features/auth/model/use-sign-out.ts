@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { routes } from '@/shared/config'
 import { useSession } from './session.store'
-import { ACCESS_TOKEN_LOCAL_STORAGE_NAME } from '@/shared/config/client-env-variables'
+import { authApi } from '../api'
 
 export function useSignOut() {
   const { removeSession } = useSession()
@@ -11,9 +10,9 @@ export function useSignOut() {
 
   const signOut = async () => {
     setIsLoading(true)
-    await fetch(routes.API_LOG_OUT)
+    await authApi
+      .logout()
       .then(() => {
-        localStorage.removeItem(ACCESS_TOKEN_LOCAL_STORAGE_NAME)
         removeSession()
       })
       .finally(() => setIsLoading(false))

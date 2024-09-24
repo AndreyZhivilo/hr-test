@@ -5,7 +5,6 @@ import {
   createClient,
   errorHandler,
 } from '@/shared/api'
-import { ACCESS_TOKEN_LOCAL_STORAGE_NAME } from '@/shared/config/client-env-variables'
 import { GET_MY_PROFILE, LOGIN, REFRESH } from './queries'
 import { routes } from '@/shared/config'
 import { GetMyProfileQuery } from '@/shared/api/__generated__/graphql'
@@ -16,19 +15,27 @@ type Credentials = {
 }
 
 class AuthApi {
+  accessToken: string | null
+
+  constructor() {
+    this.accessToken = null
+  }
+
   fetchUser = async (
     attempts: number = 0
   ): Promise<ApolloQueryResult<GetMyProfileQuery>> => {
     try {
-      const token = localStorage.getItem(ACCESS_TOKEN_LOCAL_STORAGE_NAME)
-      const client = createClientWithCredentials(token)
+      if (!this.accessToken) {
+        await this.refreshClient()
+      }
+      const client = createClientWithCredentials(this.accessToken)
       const res = await client.query({
         query: GET_MY_PROFILE,
       })
       return res
     } catch (e) {
+      this.accessToken = null
       if (attempts < 2) {
-        await this.refreshClient()
         return this.fetchUser(attempts + 1)
       }
       const error = errorHandler(e)
@@ -45,7 +52,7 @@ class AuthApi {
     if (!res.ok) throw data
 
     if (data.access_token) {
-      localStorage.setItem(ACCESS_TOKEN_LOCAL_STORAGE_NAME, data.access_token)
+      this.accessToken = data.access_token
     }
   }
 
@@ -78,8 +85,14 @@ class AuthApi {
     const data = await res.json()
     if (!res.ok) throw data
     if (data.access_token) {
-      localStorage.setItem(ACCESS_TOKEN_LOCAL_STORAGE_NAME, data.access_token)
+      this.accessToken = data.access_token
     }
+  }
+
+  logout = async () => {
+    await fetch(routes.API_LOG_OUT).then(() => {
+      this.accessToken = null
+    })
   }
 }
 
