@@ -55,7 +55,7 @@ export const errorHandler = (e: any) => {
 
 export const getErrorMessage = (e: ReturnType<typeof errorHandler>) => {
   if (e.graphQLErrors && isUnauthorizedGraphQLError(e)) {
-    return 'Ошибка авторизации'
+    return 'Неправильный логин или пароль'
   }
   if (e.graphQLErrors) {
     return JSON.stringify(e.graphQLErrors)

@@ -22,8 +22,7 @@ const createSessionStore = (session: Session | undefined) => create<SessionStore
 	},
 	removeSession: () => {
 		set({ currentSession: undefined })
-	},
-
+	}
 }))
 
 const sessionContext = createContext<UseBoundStore<StoreApi<SessionStore>>>({} as UseBoundStore<StoreApi<SessionStore>>)

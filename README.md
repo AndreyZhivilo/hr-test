@@ -34,7 +34,7 @@ npm run dev
 
 ### 2. Авторизация и аутентификация
 
-Аутентификацией заведуют роуты `/app/api/auth/login`, `/app/api/auth/logout` и `/app/api/auth/refresh`. Там мы получаем от бэкенда access и refresh токены. После этого refresh сохраняется в httpOnly куках, а access отсылается на клиент и храниться в инстансе класса AuthApi.
+Аутентификацией заведуют роуты `/app/api/auth/login`, `/app/api/auth/logout` и `/app/api/auth/refresh`. Там мы получаем от бэкенда access и refresh токены. После этого refresh сохраняется в httpOnly куках, а access отсылается на клиент и храниться в localStorage.
 
 На старте приложения сессия загружается с сервера в компоненте `app/app-loader`. После этого она храниться в Zustand-сторе, который создается при каждой загрузке и пробрасывается на все приложение через React Context.
 

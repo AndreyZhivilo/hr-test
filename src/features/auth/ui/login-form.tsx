@@ -35,7 +35,7 @@ export function LoginForm() {
 	useEffect(() => {
 		if (error) {
 			toast({
-				title: "Ошибка",
+				title: "Ошибка!",
 				description: `${error}`,
 				duration: 4000,
 			})
