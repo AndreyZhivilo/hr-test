@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from './session.store'
 import { authApi } from '../api'
@@ -11,10 +11,10 @@ import { getErrorMessage } from '@/shared/api'
 export function useSignIn() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const { setCurrentSession } = useSession()
+  const { currentSession, setCurrentSession } = useSession()
   const router = useRouter()
 
-  const singIn = async (credentials: LoginForm) => {
+  const signIn = async (credentials: LoginForm) => {
     setError(null)
     setIsLoading(true)
     try {
@@ -28,7 +28,6 @@ export function useSignIn() {
         name: myProfile.name,
         avatar: myProfile.avatar,
       })
-      router.push(routes.USER_DASHBOARD)
     } catch (e: any) {
       setError(getErrorMessage(e))
     } finally {
@@ -36,8 +35,14 @@ export function useSignIn() {
     }
   }
 
+  useEffect(() => {
+    if (currentSession) {
+      router.push(routes.USER_DASHBOARD)
+    }
+  }, [currentSession, router])
+
   return {
-    singIn,
+    signIn,
     isLoading,
     error,
   }

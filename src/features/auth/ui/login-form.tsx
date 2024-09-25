@@ -27,10 +27,10 @@ export function LoginForm() {
 		formState: { errors },
 	} = useForm<LoginForm>({ resolver: zodResolver(loginFormSchema) })
 
-	const { error, isLoading, singIn } = useSignIn()
+	const { error, isLoading, signIn } = useSignIn()
 	const { toast } = useToast()
 
-	const onSubmit: SubmitHandler<LoginForm> = singIn
+	const onSubmit: SubmitHandler<LoginForm> = signIn
 
 	useEffect(() => {
 		if (error) {
