@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, ReactNode, useContext } from 'react'
+import { createContext, ReactNode, useContext, useMemo } from 'react'
 import { create, StoreApi, UseBoundStore } from 'zustand'
 
 export type Session = {
@@ -28,7 +28,9 @@ const createSessionStore = (session: Session | undefined) => create<SessionStore
 const sessionContext = createContext<UseBoundStore<StoreApi<SessionStore>>>({} as UseBoundStore<StoreApi<SessionStore>>)
 
 export function SessionProvider({ session, children }: { session: Session | undefined, children: ReactNode }) {
-	const store = createSessionStore(session)
+
+	const store = useMemo(() => createSessionStore(session), [session])
+
 	return <sessionContext.Provider value={store}>{children}</sessionContext.Provider>
 }
 
